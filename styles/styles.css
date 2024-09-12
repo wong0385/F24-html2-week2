@@ -193,3 +193,67 @@ nav ul li a{
 nav ul li a:hover{
     background-color: cadetblue;
 }
+
+nav ul li:nth-child(2){
+    /* the flexbox property orders allows you to change the order of one element 
+    the default order position is 0 
+    highter numbers come later, lower (negative) numbers comes first*/
+    order: 1;
+}
+
+h1{
+    /* by default, grids set up a single column grid with as mony rows as necessary
+    based on the elements inside this container (vertical stack) */
+    display: grid;
+
+    /* grid-template-columns allows us to define columns in our grid
+    the unit "fr" stands for fraction, or one part of the available space */
+    grid-template-columns: repeat(5, 1fr);
+
+    /* grid-template-areas allows you to create a map, then name parts of that map*/
+    grid-template-areas:
+        "penguin title1 title1 title1 title1"
+        "penguin title2 title2 title2 title2";
+}
+
+h1 img{
+    /* grid area assigns this object to one part of the map */
+    grid-area:penguin;
+}
+
+/* this reads: span is the second child of h1 */
+h1 span:nth-child(2){ grid-area: title1; }
+h1 span:nth-child(3){ grid-area: title2; }
+
+#game{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 3fr 2fr;
+
+    /* justify-items position objects horizontally in each grid space */
+    justify-items: center;
+
+    /* align-items position objects vertically in each grid space */
+    align-items: end;
+}
+
+/* nth-of-type looks for the third img no matter how many other things in the parent */
+#game img:nth-of-type(3){
+    background: white;
+    /* tell the object to be in a specific place in your grid */
+    grid-row: 3;
+}
+
+#game img:nth-of-type(4){
+    background: #060;
+
+    /* column-start and column-end can be used to tell an object to take up a specific number of columns
+    likewise with grid-row-start*/
+    grid-column-start: 2;
+    grid-column-end: span 2;
+
+    /* we can control the alignment of an individual grip item using
+    justify-self (horizontal) and aligh-self (vertical) */
+    justify-self: right;
+    align-self: center;
+}
